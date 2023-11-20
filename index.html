@@ -1,10 +1,43 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>tracker</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    
+    <p><span id="first">~</span><span id="second">$&nbsp;</span><span name="some" id="editable" role="textbox"
+            contenteditable autofocus></span></p>
+    <button onclick="disableSpan()">Disable Span</button>
+
+
+    <script>
+        const editableSpan = document.getElementById('editable');
+
+        // Prevent the span from losing focus
+        editableSpan.addEventListener('blur', function (event) {
+            event.preventDefault();
+            editableSpan.focus();
+        });
+
+        editableSpan.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                if (!editableSpan.textContent.endsWith("\\")) {
+                    event.preventDefault();
+                    disableSpan();
+                    console.log(editableSpan.textContent);
+                }
+            }
+        });
+
+        function disableSpan() {
+            var editableSpan = document.getElementById('editable');
+            editableSpan.contentEditable = false;
+            editableSpan.classList.add('disabled');
+        }
+    </script>
 </body>
+
 </html>
