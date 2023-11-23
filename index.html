@@ -30,6 +30,7 @@
                     event.preventDefault();
                     disableSpan(input);
                     var result = input.textContent.split("\\").join("");
+                    print(result);
                     console.log(result);
                     input.removeEventListener('blur', repeatedFocus);
                     input.removeEventListener('keydown', onSubmit);
@@ -63,10 +64,10 @@
             input.focus();
         }
 
-        function disableSpan() {
-            var editableSpan = document.getElementById('editable');
-            editableSpan.contentEditable = false;
-            editableSpan.classList.add('disabled');
+        function print(text) {
+            p = document.createElement("p");
+            p.textContent = text;
+            document.body.appendChild(p);
         }
     </script>
 </body>
