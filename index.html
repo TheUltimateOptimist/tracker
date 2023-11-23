@@ -8,68 +8,7 @@
 </head>
 
 <body>
-    <script>
-        var rowId = 0;
-        addInputRow();
-
-        function disableSpan(input) {
-            input.contentEditable = false;
-            input.classList.add('disabled');
-        }
-
-        function repeatedFocus(event) {
-            event.preventDefault();
-            input = document.getElementById(`editable${rowId}`);
-            input.focus();
-        }
-
-        function onSubmit(event) {
-            input = document.getElementById(`editable${rowId}`);
-            if (event.key === 'Enter') {
-                if (!input.textContent.endsWith("\\")) {
-                    event.preventDefault();
-                    disableSpan(input);
-                    var result = input.textContent.split("\\").join("");
-                    print(result);
-                    console.log(result);
-                    input.removeEventListener('blur', repeatedFocus);
-                    input.removeEventListener('keydown', onSubmit);
-                    addInputRow();
-                }
-            }
-        }
-
-        function addInputRow() {
-            paragraph = document.createElement("p");
-            first = document.createElement("span");
-            second = document.createElement("span");
-            input = document.createElement("span");
-            first.setAttribute("id", "first");
-            first.textContent = "~";
-            second.setAttribute("id", "second");
-            second.textContent = "$";
-            input.setAttribute("class", "editable");
-            input.setAttribute("role", "textbox");
-            input.setAttribute("id", `editable${++rowId}`)
-            input.contentEditable = true;
-            input.autofocus = true
-            paragraph.appendChild(first)
-            paragraph.appendChild(second);
-            paragraph.appendChild(input);
-
-            document.body.appendChild(paragraph);
-
-            input.addEventListener('blur', repeatedFocus);
-            input.addEventListener('keydown', onSubmit);
-            input.focus();
-        }
-
-        function print(text) {
-            p = document.createElement("p");
-            p.textContent = text;
-            document.body.appendChild(p);
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
